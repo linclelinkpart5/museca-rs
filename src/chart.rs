@@ -1,4 +1,4 @@
-use types::{BPM, Offset, TimeSig};
+use common::types::{BPM, Offset, TimeSig};
 use event::Event;
 
 pub struct Chart {

@@ -1,6 +1,6 @@
 mod event;
 mod chart;
-mod types;
+mod common;
 
 fn main() {
     println!("Welcome to Museca!");

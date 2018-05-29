@@ -65,7 +65,7 @@ mod kind {
 }
 
 use self::kind::EventKind;
-use types::Offset;
+use common::types::Offset;
 
 /// Represents an event in a MUSECA notechart.
 /// Events consists of a kind (note, hold, spin, etc.) and an offset.
