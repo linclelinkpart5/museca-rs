@@ -65,37 +65,37 @@ mod kind {
 }
 
 use self::kind::EventKind;
+use types::Offset;
 
-/// Millisecond offset of event.
-pub type EventTime = u32;
-
+/// Represents an event in a MUSECA notechart.
+/// Events consists of a kind (note, hold, spin, etc.) and an offset.
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone, Copy, Hash)]
 pub struct Event {
-    pub time: EventTime,
+    pub offset: Offset,
     pub kind: EventKind,
 }
 
 impl Event {
-    pub fn new(time: EventTime, kind: EventKind) -> Self {
-        Event { time, kind, }
+    pub fn new(offset: Offset, kind: EventKind) -> Self {
+        Event { offset, kind, }
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{Event, EventTime, EventKind};
+    use super::{Event, Offset, EventKind};
 
     #[test]
     fn test_new() {
         let inputs_and_expected = vec![
-            ((10u32, EventKind::Note), Event{ time: 10, kind: EventKind::Note, }),
-            ((20u32, EventKind::LargeSpinner), Event{ time: 20, kind: EventKind::LargeSpinner, }),
-            ((30u32, EventKind::BeatMarker), Event{ time: 30, kind: EventKind::BeatMarker, }),
+            ((10u32, EventKind::Note), Event{ offset: 10, kind: EventKind::Note, }),
+            ((20u32, EventKind::LargeSpinner), Event{ offset: 20, kind: EventKind::LargeSpinner, }),
+            ((30u32, EventKind::BeatMarker), Event{ offset: 30, kind: EventKind::BeatMarker, }),
         ];
 
         for (input, expected) in inputs_and_expected {
-            let (time, kind) = input;
-            let produced = Event::new(time, kind);
+            let (offset, kind) = input;
+            let produced = Event::new(offset, kind);
             assert_eq!(expected, produced);
         }
     }
