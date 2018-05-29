@@ -1,3 +1,4 @@
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone, Copy)]
 pub enum EventKind {
     Note,  // 0
     Hold,  // 1
@@ -32,14 +33,24 @@ impl EventKind {
     }
 }
 
+/// Millisecond offset of event.
+pub type EventTime = u32;
+
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone, Copy)]
 pub struct Event {
-    kind: EventKind,
-    time: u32,
+    pub time: EventTime,
+    pub kind: EventKind,
+}
+
+impl Event {
+    pub fn new(time: EventTime, kind: EventKind) -> Self {
+        Event { time, kind, }
+    }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::EventKind;
+    use super::{EventKind, EventTime, Event};
 
     #[test]
     pub fn event_kind_id() {
